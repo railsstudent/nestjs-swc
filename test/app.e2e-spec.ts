@@ -24,8 +24,21 @@ describe('AppController (e2e)', () => {
 
   it('/John (GET)', () => {
     return request(app.getHttpServer())
-      .get('/John')
+      .get('/John ')
       .expect(200)
       .expect('Hello John!');
+  });
+
+  it('/greet (GET)', () => {
+    return request(app.getHttpServer())
+      .get('/greet ')
+      .expect(200)
+      .expect({
+        en: { code: 'en', language: 'English', text: 'Hello!!!' },
+        es: { code: 'es', language: 'Spanish', text: 'Hola!!!' },
+        br: { code: 'br', language: 'Brazilian Portuguese', text: 'Ola!!!' },
+        cn: { code: 'cn', language: 'Traditional Chinese', text: '你好!!!' },
+        de: { code: 'de', language: 'Germany', text: 'Hallo!!!' },
+      });
   });
 });
